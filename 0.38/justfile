@@ -1,0 +1,17 @@
+SOFTWARE := "trimmomatic"
+DOCKERFILE := "../Dockerfile.multi"
+
+VERSION := `basename $(pwd)`
+
+emit-dockerfile:
+    @echo {{DOCKERFILE}}
+
+build-docker:
+  docker buildx build --compress --progress plain \
+  -t "ghcr.io/martinluttap/{{SOFTWARE}}:{{VERSION}}" \
+  -f {{DOCKERFILE}} \
+  . \
+  --build-arg VERSION="{{VERSION}}" \
+
+push-docker:
+  docker push ghcr.io/martinluttap/{{SOFTWARE}}:{{VERSION}}
