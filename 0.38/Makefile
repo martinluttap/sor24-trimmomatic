@@ -3,8 +3,8 @@ DOCKER_REPO = trimmomatic
 
 SHORT_HASH := $(shell git rev-parse --short HEAD)
 DOCKER_URL := quay.io/ncigdc
-DOCKER_IMAGE := ${DOCKER_URL}/${DOCKER_REPO}:${VERSION}
-DOCKER_IMAGE_HASH := ${DOCKER_URL}/${DOCKER_REPO}:${VERSION}-${SHORT_HASH}
+DOCKER_IMAGE := ${DOCKER_URL}/sor24-${DOCKER_REPO}:${VERSION}
+DOCKER_IMAGE_HASH := ${DOCKER_URL}/sor24-${DOCKER_REPO}:${VERSION}-${SHORT_HASH}
 
 .PHONY: version version-* name
 name:
