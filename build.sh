@@ -23,11 +23,13 @@ for directory in *; do
 
 		# Allow per-version Dockerfile
 		DOCKERFILE=$(just emit-dockerfile)
-		SHORT_TAG="${REGISTRY}/${SOFTWARE}:${directory}"
-		BUILD_TAG="${REGISTRY}/${SOFTWARE}:${directory}-${GIT_SHORT_HASH}"
+		LATEST_TAG="${REGISTRY}/sor24-${SOFTWARE}:latest"
+		SHORT_TAG="${REGISTRY}/sor24-${SOFTWARE}:${directory}"
+		BUILD_TAG="${REGISTRY}/sor24-${SOFTWARE}:${directory}-${GIT_SHORT_HASH}"
 		docker buildx build --compress --progress plain \
   			-t "${BUILD_TAG}" \
 			-t "${SHORT_TAG}" \
+  			-t "${LATEST_TAG}" \
   			-f "${DOCKERFILE}" \
   			. \
   			--build-arg VERSION="${directory}"
